@@ -15,11 +15,35 @@
   </head>
   <body>
     <div id="app">
-      <section class="modal">{{product}}</section>
+      <section @click="closeModal" class="modal" v-if="product">
+        <div class="modal-container">
+          <div class="modal-image">
+            <img :src="product.img" alt="product.nome" />
+          </div>
+          <div class="modal-content">
+            <button @click="product = false" class="modal-btn-close">X</button>
+            <span class="modal-price">{{product.preco}}</span>
+            <h2 class="modal-title">{{product.nome}}</h2>
+            <p>{{product.descricao}}</p>
+            <button class="modal-btn">Adicionar Item</button>
+          </div>
+          <div class="reviews">
+            <h2 class="reviews-subtitle">Avaliações</h2>
+            <ul>
+              <li class="review" v-for="review in product.reviews">
+                <p class="review-description">{{review.descricao}}</p>
+                <p class="review-user">
+                  {{review.nome}} | {{review.estrelas}} estrelas
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <section class="products">
         <div
-          @click="getProduct(product.id)"
+          @click="openModal(product.id)"
           v-for="product in products"
           :key="product.id"
           class="product"
