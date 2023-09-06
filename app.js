@@ -1,7 +1,8 @@
 const vm = new Vue({
   el: '#app',
   data: {
-    products: []
+    products: [],
+    product: false
   },
   filters: {
     formatPrice(value) {
@@ -14,10 +15,10 @@ const vm = new Vue({
       const data = await response.json()
       this.products = data;
     },
-    async getProduto() {
-      const response = await fetch('');
-      const data = response.json();
-      
+    async getProduct(id) {
+      const response = await fetch(`./api/produtos/${id}/dados.json`);
+      const data = await response.json();
+      this.product = data;
     }
   },
   created() {

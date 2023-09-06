@@ -15,8 +15,15 @@
   </head>
   <body>
     <div id="app">
+      <section class="modal">{{product}}</section>
+
       <section class="products">
-        <div v-for="product in products" :key="product.id" class="product">
+        <div
+          @click="getProduct(product.id)"
+          v-for="product in products"
+          :key="product.id"
+          class="product"
+        >
           <img :src="product.img" alt="product.nome" class="product-img" />
           <div class="product-info">
             <span class="product-price">{{product.preco | formatPrice}}</span>
