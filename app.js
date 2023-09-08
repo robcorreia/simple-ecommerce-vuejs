@@ -50,9 +50,19 @@ const vm = new Vue({
     },
     removeCart(index) {
       this.cart.splice(index, 1)
+    },
+    checkLocalStorage() {
+      if(window.localStorage.cart) this.cart = JSON.parse(window.localStorage.getItem('cart'))
+      
+    }
+  },
+  watch: {
+    cart(){
+      window.localStorage.cart = JSON.stringify(this.cart)
     }
   },
   created() {
     this.getProducts()
+    this.checkLocalStorage()
   }
 })
