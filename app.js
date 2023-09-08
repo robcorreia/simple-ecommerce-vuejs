@@ -64,15 +64,28 @@ const vm = new Vue({
       setTimeout(() => {
         this.alertActive = false
       }, 1500)
+    },
+    router() {
+      const hash = document.location.hash;
+      console.log(hash)
+      if(hash) {
+        this.getProduct(hash.replace('#', ''))
+      }
     }
   },
   watch: {
+    product() {
+      document.title = this.product.nome || 'Techno';
+      const hash = this.product.id || "";
+      history.pushState(null, null, `#${hash}`)
+    },
     cart(){
       window.localStorage.cart = JSON.stringify(this.cart)
     }
   },
   created() {
-    this.getProducts()
-    this.checkLocalStorage()
+    this.getProducts();
+    this.checkLocalStorage();
+    this.router();
   }
 })
