@@ -54,7 +54,7 @@
           </div>
           <div class="modal-content">
             <button @click="product = false" class="modal-btn-close">X</button>
-            <span class="modal-price">{{product.preco}}</span>
+            <span class="modal-price">{{product.preco | formatPrice}}</span>
             <h2 class="modal-title">{{product.nome}}</h2>
             <p>{{product.descricao}}</p>
             <button
@@ -82,6 +82,12 @@
         </div>
       </section>
       <!-- Modal Product -->
+
+      <!-- Alert -->
+      <div class="alert" :class="{active: alertActive}">
+        <p class="alert-message">{{alertMessage}}</p>
+      </div>
+      <!-- Alert -->
     </div>
     <script src="./app.js"></script>
   </body>
